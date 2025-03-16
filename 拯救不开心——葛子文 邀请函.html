@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诚挚邀请 - 葛子文</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0070F3',
+                        secondary: '#666666',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in',
+                        'scale': 'scale 0.3s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        scale: {
+                            '0%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '100%': { transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+
+        .fluid-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            mix-blend-mode: screen;
+            transition: all 0.5s ease;
+        }
+
+        .shape-1 {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            width: 800px;
+            height: 800px;
+            left: -10%;
+            top: 30%;
+            animation: floatShape1 25s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            width: 600px;
+            height: 600px;
+            right: -5%;
+            top: 10%;
+            animation: floatShape2 30s ease-in-out infinite;
+        }
+
+        .shape-3 {
+            background: linear-gradient(45deg, #a06cd5, #8854d0);
+            width: 700px;
+            height: 700px;
+            left: 40%;
+            bottom: -20%;
+            animation: floatShape3 28s ease-in-out infinite;
+        }
+
+        @keyframes floatShape1 {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(100px, 50px) scale(1.4) rotate(120deg); }
+            66% { transform: translate(-150px, -100px) scale(0.8) rotate(240deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+        }
+
+        @keyframes floatShape2 {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(-200px, 100px) scale(1.2) rotate(180deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+        }
+
+        @keyframes floatShape3 {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(150px, -100px) scale(1.3) rotate(120deg); }
+            66% { transform: translate(-100px, 150px) scale(0.9) rotate(240deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+        }
+
+        /* 主内容区域的初始模糊效果 */
+        .content-blur {
+            animation: initialBlur 1.5s ease-out forwards;
+        }
+
+        @keyframes initialBlur {
+            0% { filter: blur(20px); opacity: 0; }
+            100% { filter: blur(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-200">
+    <!-- 动态背景 -->
+    <div class="animated-background">
+        <div class="fluid-shape shape-1"></div>
+        <div class="fluid-shape shape-2"></div>
+        <div class="fluid-shape shape-3"></div>
+    </div>
+
+    <!-- 时钟容器 -->
+    <div class="clock-container">
+        <div class="clock" id="clock"></div>
+        <div class="date" id="date"></div>
+    </div>
+
+    <!-- 主要内容容器 -->
+    <div class="content-container">
+        <div class="max-w-2xl w-full bg-white/30 dark:bg-gray-800/30 rounded-2xl shadow-xl p-8 m-4 backdrop-blur-xl">
+            <!-- 原有的邀请函内容保持不变 -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">诚挚邀请</h1>
+                <div class="w-16 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <!-- 图片占位区域 -->
+            <div class="mb-8 overflow-hidden rounded-lg hover:shadow-2xl transition-shadow duration-300">
+                <img id="invitation-image" src="https://upload.cc/i1/2025/03/16/vB1UlC.jpg" alt="邀请函图片" 
+                     class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-300">
+            </div>
+
+            <!-- 邀请函内容 -->
+            <div class="space-y-8 text-gray-700 dark:text-gray-300">
+                <!-- 称谓部分 -->
+                <div class="text-center">
+                    <p class="text-xl font-serif italic">
+                        尊敬的 <span class="text-primary font-bold">先生/女士</span>
+                    </p>
+                </div>
+
+                <!-- 主题部分 -->
+                <div class="text-center mb-6">
+                    <p class="text-2xl font-bold mb-2">
+                        <span class="text-primary">拯救不开心，打散该死的论文阴霾 聚餐仪式</span>
+                    </p>
+                </div>
+
+                <!-- 诗词引用 -->
+                <div class="text-center italic font-serif bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                    <p class="text-lg">"周末闲暇之时，恰逢佳期，愿与君共享此刻人间烟火！"</p>
+                </div>
+
+                <!-- 正文部分 -->
+                <div class="text-center leading-loose">
+                    <p class="mb-4">
+                        谨以此函，诚挚邀请阁下/女士莅临xx饭点(未定)，<br>
+                        下周六(日)让我们拯救不开心，让论文见鬼去吧！
+                    </p>
+                </div>
+
+                <!-- 结尾诗句 -->
+                <div class="text-center font-serif italic">
+                    <p class="mb-2">辞慕尔尔，烟火年年。欢宴良宵好月，诚待君至。</p>
+                    <p class="text-primary">年年岁岁花相似，岁岁年年人定同。</p>
+                </div>
+                
+                <!-- 活动详情 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg mt-8">
+                    <h3 class="font-bold mb-4 text-center text-xl">活动详情</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center justify-center">
+                            <i class="far fa-calendar-alt mr-3 text-primary"></i>
+                            <span>时间：2025年3月22或23日</span>
+                        </li>
+                        <li class="flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt mr-3 text-primary"></i>
+                            <span>地点：xx饭店(暂定——集思广益)</span>
+                        </li>
+                        <li class="flex items-center justify-center">
+                            <i class="fas fa-tshirt mr-3 text-primary"></i>
+                            <span>着装要求：怎么舒服怎么来，符合法律规范即可</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 邀请人签名 -->
+            <div class="text-right mt-8">
+                <p class="text-gray-600 dark:text-gray-400">诚挚邀请</p>
+                <p class="text-primary font-bold mt-2">葛子文</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部社交媒体链接 -->
+    <footer class="fixed bottom-0 w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-6">
+                <!-- 微信 - 使用微信 URL Scheme -->
+                <a href="weixin://dl/chat?maximum12345" onclick="if(!navigator.userAgent.match(/MicroMessenger/i)){alert('微信号：maximum12345');return false;}" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-200">
+                    <i class="fab fa-weixin text-2xl"></i>
+                </a>
+                <!-- QQ - 保持不变 -->
+                <a href="tencent://message/?uin=1611749102" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-200">
+                    <i class="fab fa-qq text-2xl"></i>
+                </a>
+                <!-- 小红书 - 更新链接格式 -->
+                <a href="https://www.xiaohongshu.com/user/profile/65772fab000000001902ebe3?xsec_token=YBjE6-yDR0O84SBVI7Gz2QliOVGWEiKr_Aw6u6AFV6Qx8%3D&xsec_source=app_share&xhsshare=CopyLink&appuid=65772fab000000001902ebe3&apptime=1742129162&share_id=672edda5c70d45c2b19167e4823556b2&share_channel=copy_link" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-200">
+                    <i class="fas fa-book text-2xl"></i>
+                </a>
+                <!-- 抖音 - 更新链接格式 -->
+                <a href=" https://v.douyin.com/i5nDhjdN/ 9@2.com :1pm" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors duration-200">
+                    <i class="fab fa-tiktok text-2xl"></i>
+                </a>
+            </div>
+            <div class="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
+                © <span id="current-year"></span> 版权所有
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 深色模式切换
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // 设置当前年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
+<head>
+    <style>
+        /* 时钟样式 */
+        .clock-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 30;
+            text-align: center;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .clock {
+            font-size: 12vw;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .date {
+            font-size: 2vw;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 2vh;
+            font-weight: 300;
+        }
+
+        .clock-minimized {
+            transform: translate(calc(100vw - 150px), calc(100vh - 100px)) scale(0.15);
+            opacity: 0.8;
+        }
+
+        /* 内容容器样式 */
+        .content-container {
+            position: relative;
+            z-index: 20;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .content-visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const clockContainer = document.querySelector('.clock-container');
+        const contentContainer = document.querySelector('.content-container');
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('en-US', {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            document.getElementById('date').textContent = now.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            });
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // 监听滚动事件
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                clockContainer.classList.add('clock-minimized');
+                contentContainer.classList.add('content-visible');
+            } else {
+                clockContainer.classList.remove('clock-minimized');
+                contentContainer.classList.remove('content-visible');
+            }
+        });
+
+        // 初始状态设置
+        contentContainer.classList.remove('content-visible');
+        clockContainer.classList.remove('clock-minimized');
+    });
+</script>
